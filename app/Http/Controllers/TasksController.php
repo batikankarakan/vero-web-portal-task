@@ -52,7 +52,7 @@ class TasksController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer a9d306bef12392d9f116f8796fee9d92cf492ef8',
+                'Authorization: Bearer 6531797d21f3b584ab93e6ff7fce50c52784434b',
             ),
         ));
 

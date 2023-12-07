@@ -15,15 +15,16 @@
 <div
     class="">
 
-    <div id="tasks" class="mx-auto p-6 lg:p-8 flex flex-col justify-center max-w-7xl">
-        <div class="px-4 sm:px-6 lg:px-8 flex justify-center items-center space-x-2 bg-white p-8 max-w-lg rounded-xl">
-            <span class="text-gray-500">Search</span>
-            <input class="search px-2 py-1 border rounded-lg w-80" placeholder="" />
-        </div>
+    <div id="tasks" class="mx-auto p-6 lg:p-8 flex flex-col justify-center max-w-5xl">
+
         <div class="mt-8 bg-white p-12 flex flex-col rounded-xl">
 
             <div class="px-4 sm:px-6 lg:px-8">
-                <div class="sm:flex sm:items-center">
+                <div class="flex justify-end items-center bg-white rounded-xl space-x-2">
+                    <span class="text-gray-500">Search</span>
+                    <input class="search px-2 py-1 border rounded-lg w-80" placeholder="" />
+                </div>
+                <div class="sm:flex sm:items-center mt-4">
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold leading-6 text-gray-900">Tasks</h1>
                         <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their
@@ -32,7 +33,7 @@
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <button type="button"
                                 class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Print
+                            Upload Image
                         </button>
                     </div>
                 </div>
