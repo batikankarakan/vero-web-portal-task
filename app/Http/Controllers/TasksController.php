@@ -39,7 +39,6 @@ class TasksController extends Controller
 
     public function fetchTasks()
     {
-
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -52,7 +51,7 @@ class TasksController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer 6531797d21f3b584ab93e6ff7fce50c52784434b',
+                'Authorization: Bearer d8ae6c7f9b146873f6aba2da63cba5dcc7a6f7ee',
             ),
         ));
 
