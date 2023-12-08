@@ -76,7 +76,10 @@ class TasksController extends Controller
                 "colorCode" => $task["colorCode"],
             ];
         }
+        return $tasks;
+    }
 
-        return view('tasks', ['tasks' => $tasks]);
+    public function tasks(){
+        return view('tasks');
     }
 }

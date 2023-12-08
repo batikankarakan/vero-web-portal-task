@@ -124,22 +124,29 @@
             URL.revokeObjectURL(output.src) // free memory
         }
     };
+
     Vue.createApp({
         data() {
             return {
                 showModal: false,
-                tasks: @json($tasks),
+                tasks: [],
                 search: "",
             }
         },
         mounted() {
-
+            this.fetchTasks()
+            setInterval(() => {
+                this.fetchTasks()
+            }, 3600000)
         },
         created() {
 
         },
         methods: {
-
+            async fetchTasks() {
+                const res = await fetch("{{ route('fetch') }}")
+                this.tasks = await res.json();
+            }
         },
         computed: {
             filteredTasks() {
@@ -152,8 +159,7 @@
                 })
             }
         },
-    })
-        .mount("#tasks");
+    }).mount("#tasks");
 
 </script>
 </body>
