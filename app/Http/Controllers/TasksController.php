@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TasksController extends Controller
 {
@@ -34,11 +35,17 @@ class TasksController extends Controller
         curl_close($curl);
 
         $decoded = json_decode($response, TRUE);
-        return $decoded["oauth"]["access_token"];
+        return $decoded["oauth"];
     }
 
     public function fetchTasks()
     {
+        $accessToken = Cache::get('accessToken');
+        if (!$accessToken) {
+            $oAuth = $this->auth();
+            $accessToken = $oAuth["access_token"];
+            Cache::put('accessToken', $oAuth["access_token"], $oAuth["expires_in"]);
+        }
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -51,7 +58,7 @@ class TasksController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer d8ae6c7f9b146873f6aba2da63cba5dcc7a6f7ee',
+                'Authorization: Bearer ' . $accessToken,
             ),
         ));
 

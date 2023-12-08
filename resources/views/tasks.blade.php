@@ -22,7 +22,7 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-end items-center bg-white rounded-xl space-x-2">
                     <span class="text-gray-500">Search</span>
-                    <input class="search px-2 py-1 border rounded-lg w-80" placeholder=""/>
+                    <input v-model="search" class="search px-2 py-1 border rounded-lg w-80" placeholder=""/>
                 </div>
                 <div class="sm:flex sm:items-center mt-4">
                     <div class="sm:flex-auto">
@@ -96,17 +96,16 @@
                         </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($tasks as $task)
-                            <tr class="border-b border-gray-200">
-                                <td class="hidden px-3 py-5 text-sm text-gray-500 sm:table-cell task">{{ $task["task"] }}</td>
-                                <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
-                                    <div class="font-medium text-gray-900 title">{{ $task["title"] }}</div>
-                                    <div class="mt-1 text-gray-500 description">{{ $task["description"] }}</div>
-                                </td>
-                                <td class="hidden px-3 py-5 text-right text-sm sm:table-cell color"
-                                    style="color: {{ $task["colorCode"] }}">{{ $task["colorCode"] }}</td>
-                            </tr>
-                        @endforeach
+                        <tr v-for="task in filteredTasks" :key="task.task" class="border-b border-gray-200">
+                            <td class="hidden px-3 py-5 text-sm text-gray-500 sm:table-cell task">@{{ task.task }}</td>
+                            <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                <div class="font-medium text-gray-900 title">@{{ task.title }}</div>
+                                <div class="mt-1 text-gray-500 description">@{{ task.description }}</div>
+                            </td>
+                            <td class="hidden px-3 py-5 text-right text-sm sm:table-cell color"
+                                :style="{color: task.colorCode}">@{{ task.colorCode }}
+                            </td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -116,7 +115,6 @@
         </div>
     </div>
 </div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
 <script>
     var loadFile = function (event) {
@@ -129,7 +127,9 @@
     Vue.createApp({
         data() {
             return {
-                showModal: false
+                showModal: false,
+                tasks: @json($tasks),
+                search: "",
             }
         },
         mounted() {
@@ -138,15 +138,23 @@
         created() {
 
         },
-        methods: {},
-        computed: {},
-    })
-        .mount("#upload");
+        methods: {
 
-    var options = {
-        valueNames: ['task', 'title', 'description', 'color']
-    };
-    var userList = new List('tasks', options);
+        },
+        computed: {
+            filteredTasks() {
+                const searchLowerCase = this.search.toLowerCase()
+                return this.tasks.filter(task => {
+                    return task.task.toLowerCase().indexOf(searchLowerCase) > -1
+                        || task.description.toLowerCase().indexOf(searchLowerCase) > -1
+                        || task.title.toLowerCase().indexOf(searchLowerCase) > -1
+                        || task.colorCode.toLowerCase().indexOf(searchLowerCase) > -1
+                })
+            }
+        },
+    })
+        .mount("#tasks");
+
 </script>
 </body>
 </html>
