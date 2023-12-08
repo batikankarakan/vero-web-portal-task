@@ -71,8 +71,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="-mx-4 mt-8 flow-root sm:mx-0">
@@ -131,7 +129,7 @@
     Vue.createApp({
         data() {
             return {
-                showModal: true
+                showModal: false
             }
         },
         mounted() {
@@ -145,6 +143,10 @@
     })
         .mount("#upload");
 
+    var options = {
+        valueNames: ['task', 'title', 'description', 'color']
+    };
+    var userList = new List('tasks', options);
 </script>
 </body>
 </html>
