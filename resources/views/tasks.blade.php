@@ -96,8 +96,10 @@
                         </tr>
                         </thead>
                         <tbody class="list">
-                        <tr v-for="task in filteredTasks" :key="task.task" class="border-b border-gray-200">
-                            <td class="hidden px-3 py-5 text-sm text-gray-500 sm:table-cell task">@{{ task.task }}</td>
+                        <tr v-if="tasks.length > 0" v-for="task in filteredTasks" :key="task.task"
+                            class="border-b border-gray-200">
+                            <td class="hidden px-3 py-5 text-sm text-gray-500 sm:table-cell task">@{{ task.task }}
+                            </td>
                             <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
                                 <div class="font-medium text-gray-900 title">@{{ task.title }}</div>
                                 <div class="mt-1 text-gray-500 description">@{{ task.description }}</div>
@@ -106,7 +108,22 @@
                                 :style="{color: task.colorCode}">@{{ task.colorCode }}
                             </td>
                         </tr>
-
+                        <tr v-else class="border-b border-gray-200 animate-pulse">
+                            <td class="hidden px-3 py-5 text-sm text-gray-500 sm:table-cell">
+                                <div class="bg-gray-300 p-1 rounded-xl"></div>
+                            </td>
+                            <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                <div class="font-medium text-gray-900">
+                                    <div class="bg-gray-300 p-1 rounded-xl w-52"></div>
+                                </div>
+                                <div class="mt-1 text-gray-500">
+                                    <div class="bg-gray-300 p-1 rounded-xl"></div>
+                                </div>
+                            </td>
+                            <td class="hidden px-3 py-5 text-right text-sm sm:table-cell ">
+                                <div class="bg-gray-300 p-1 rounded-xl"></div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
