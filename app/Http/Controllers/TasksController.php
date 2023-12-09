@@ -32,14 +32,14 @@ class TasksController extends Controller
             $accessToken = $oAuth["access_token"];
             Cache::put('accessToken', $oAuth["access_token"], $oAuth["expires_in"]);
         }
-        $client = new Client(['base_uri' => 'https://api.baubuddy.de/dev/index.php/v1/tasks/']);
 
+        $client = new Client(['base_uri' => 'https://api.baubuddy.de/dev/index.php/']);
         $headers = [
             "Authorization" => "Bearer $accessToken",
             "Content-type" => "application/json"
         ];
 
-        $response = $client->request('GET', 'select', ['headers' => $headers]);
+        $response = $client->request('GET', 'v1/tasks/select', ['headers' => $headers]);
         $content = $response->getBody()->getContents();
         $decoded = json_decode($content, TRUE);
 
