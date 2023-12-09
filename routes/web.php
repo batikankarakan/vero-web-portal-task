@@ -16,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\TasksController::class, 'tasks']);
 Route::get('/tasks', [\App\Http\Controllers\TasksController::class, 'fetchTasks'])->name('fetch');
-Route::get('/auth', [\App\Http\Controllers\TasksController::class, 'auth']);
 
 

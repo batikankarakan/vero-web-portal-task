@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'baubuddy' => [
+        'key' => env('BAUBUDDY_BASIC_TOKEN'),
+    ]
+
 ];

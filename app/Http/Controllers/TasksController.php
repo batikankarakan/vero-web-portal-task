@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Cache;
 
 class TasksController extends Controller
 {
-    public function auth()
+    public function auth(Client $client)
     {
-        $client = new Client(['base_uri' => 'https://api.baubuddy.de/index.php/']);
-
         $headers = [
-            "Authorization" => "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz",
+            "Authorization" => "Basic ". config('services.baubuddy.key'),
             "Content-type" => "application/json"
         ];
 
@@ -24,16 +22,15 @@ class TasksController extends Controller
         return $decoded["oauth"];
     }
 
-    public function fetchTasks()
+    public function fetchTasks(Client $client)
     {
         $accessToken = Cache::get('accessToken');
         if (!$accessToken) {
-            $oAuth = $this->auth();
+            $oAuth = $this->auth($client);
             $accessToken = $oAuth["access_token"];
             Cache::put('accessToken', $oAuth["access_token"], $oAuth["expires_in"]);
         }
 
-        $client = new Client(['base_uri' => 'https://api.baubuddy.de/dev/index.php/']);
         $headers = [
             "Authorization" => "Bearer $accessToken",
             "Content-type" => "application/json"
@@ -41,6 +38,7 @@ class TasksController extends Controller
 
         $response = $client->request('GET', 'v1/tasks/select', ['headers' => $headers]);
         $content = $response->getBody()->getContents();
+
         $decoded = json_decode($content, TRUE);
 
         $tasks = [];
