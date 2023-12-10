@@ -19,6 +19,9 @@ To use this project, you need to install `composer` from [here](https://getcompo
 ### Testing
 To run tests for project, run this code on your terminal:
 ```sh
-php artisan test
+  php artisan test
 ```
 
+## Screenshots
+![Screenshot 1](/public/assets/images/screenshot1.jpeg)
+![Screenshot 1](/public/assets/images/screenshot2.jpeg)
