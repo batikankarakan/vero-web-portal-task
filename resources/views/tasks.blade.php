@@ -102,7 +102,7 @@
                             </td>
                             <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
                                 <div class="font-medium text-gray-900 title">@{{ task.title }}</div>
-                                <div class="mt-1 text-gray-500 description">@{{ task.description }}</div>
+                                <div class="mt-1 text-gray-500 whitespace-pre-line max-h-24 overflow-y-auto">@{{ task.description }}</div>
                             </td>
                             <td class="hidden px-3 py-5 text-right text-sm sm:table-cell color"
                                 :style="{color: task.colorCode}">@{{ task.colorCode }}
